@@ -33,12 +33,12 @@ GROUP BY p.category, p.sub_category, p.product_name
 ORDER BY p.category ASC, p.sub_category ASC, p.product_name ASC, total_sales DESC;
 
 
--- Slice Query: Compare the sales in California to that only in New York, for all Office Supplies
+-- Slice Query: Find the sales in California for all Office Supplies
 SELECT l.state, p.category, SUM(f.total_price) AS total_sales
 FROM sales_fact_table f
 JOIN location_dimension l ON f.location_key = l.location_key
 JOIN product_dimension p ON f.product_key = p.product_key
-WHERE l.state IN ('California', 'New York')
+WHERE l.state IN ('California')
   AND p.category = 'Office Supplies'
 GROUP BY l.state, p.category;
 
